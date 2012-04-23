@@ -22,8 +22,8 @@ public class PrepartitionSolution implements Solution {
 		this.n = P.length;
 	}
 	
-	public int residue(int[] A) {
-		int[] AA = new int[this.n];
+	public long residue(long[] A) {
+		long[] AA = new long[this.n];
 		for (int i = 0; i < this.n; i++) {
 			AA[i] = 0;
 		}
@@ -52,6 +52,10 @@ public class PrepartitionSolution implements Solution {
 		}
 		s += "]";
 		System.out.println(s);
+	}
+
+	public int[] getArray() {
+		return this.P;
 	}
 
 }

@@ -3,16 +3,25 @@ import java.util.Random;
 
 public class LocalSearch {
 	
-	public static int kk(int[] A) {
-		//TODO
-		return 0;
+	public static long kk(long[] A) {
+		MaxHeap h = new MaxHeap();
+		for (long i : A) {
+			h.insert(i);
+		}
+		while (h.size() > 1) {
+			long n1 = h.deleteMax();
+			long n2 = h.deleteMax();
+			long diff = Math.abs(n1 - n2);
+			h.insert(diff);
+		}
+		return h.deleteMax();
 	}
 	
-	public static int repeatedRandom(int[] A, Solution s, int max) {
-		int r = s.residue(A);
+	public static long repeatedRandom(long[] A, Solution s, int max) {
+		long r = s.residue(A);
 		for (int i = 0; i < max; i++) {
 			Solution ss = s.getNeighbor(true);
-			int rr = ss.residue(A);
+			long rr = ss.residue(A);
 			if (rr < r) {
 				r = rr;
 				s = ss;
@@ -21,11 +30,11 @@ public class LocalSearch {
 		return r;
 	}
 	
-	public static int hillClimbing(int[] A, Solution s, int max) {
-		int r = s.residue(A);
+	public static long hillClimbing(long[] A, Solution s, int max) {
+		long r = s.residue(A);
 		for (int i = 0; i < max; i++) {
 			Solution ss = s.getNeighbor(false);
-			int rr = ss.residue(A);
+			long rr = ss.residue(A);
 			if (rr < r) {
 				r = rr;
 				s = ss;
@@ -38,13 +47,13 @@ public class LocalSearch {
 		return (Math.pow(10, 10)*Math.pow(0.8, Math.floor(i/300)));
 	}
 	
-	public static int simulatedAnnealing(int[] A, Solution s, int max) {
-		int r = s.residue(A);
+	public static long simulatedAnnealing(long[] A, Solution s, int max) {
+		long r = s.residue(A);
 		Solution sBest = s;
-		int rBest = r;
+		long rBest = r;
 		for (int i = 0; i < max; i++) {
 			Solution ss = s.getNeighbor(false);
-			int rr = ss.residue(A);
+			long rr = ss.residue(A);
 			if (rr < r) {
 				r = rr;
 				s = ss;

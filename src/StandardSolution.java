@@ -54,8 +54,8 @@ public class StandardSolution implements Solution {
 		return new StandardSolution(neighbor);
 	}
 
-	public int residue(int[] A) {
-		int residue = 0;
+	public long residue(long[] A) {
+		long residue = 0;
 		for (int i = 0; i < this.n; i++) {
 			residue += (this.S[i]*A[i]);
 		}
@@ -70,6 +70,10 @@ public class StandardSolution implements Solution {
 		s += "]";
 		System.out.println(s);
 		
+	}
+	
+	public int[] getArray() {
+		return this.S;
 	}
 
 }

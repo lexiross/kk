@@ -36,6 +36,17 @@ public class Main {
 		Solution s2 = new PrepartitionSolution(10);
 		s1.print();
 		s2.print();
+		
+		// test heap
+		int[] arr = s2.getArray();
+		MaxHeap h = new MaxHeap();
+		for (int i : arr) {
+			h.insert(i);
+		}
+		while (!h.isEmpty()) {
+			long l = h.deleteMax();
+			System.out.println(l);
+		}
 
 	}
 
