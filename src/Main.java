@@ -32,7 +32,10 @@ public class Main {
 	 * @param args
 	 */
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
+		Solution s1 = new StandardSolution(10);
+		Solution s2 = new PrepartitionSolution(10);
+		s1.print();
+		s2.print();
 
 	}
 

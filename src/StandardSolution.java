@@ -39,6 +39,7 @@ public class StandardSolution implements Solution {
 				}
 			}
 		} else {
+			neighbor = this.S;
 			int i = rand.nextInt(n);
 			int j;
 			do {
@@ -59,6 +60,16 @@ public class StandardSolution implements Solution {
 			residue += (this.S[i]*A[i]);
 		}
 		return residue;
+	}
+
+	public void print() {
+		String s = "[";
+		for (int i = 0; i < this.n; i++) {
+			s += " " + this.S[i] + " ";
+		}
+		s += "]";
+		System.out.println(s);
+		
 	}
 
 }

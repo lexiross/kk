@@ -1,3 +1,5 @@
+import java.util.Random;
+
 
 public class LocalSearch {
 	
@@ -37,8 +39,30 @@ public class LocalSearch {
 	}
 	
 	public static int simulatedAnnealing(int[] A, Solution s, int max) {
-		// TODO
-		return 0;
+		int r = s.residue(A);
+		Solution sBest = s;
+		int rBest = r;
+		for (int i = 0; i < max; i++) {
+			Solution ss = s.getNeighbor(false);
+			int rr = ss.residue(A);
+			if (rr < r) {
+				r = rr;
+				s = ss;
+			} else {
+				Random rand = new Random();
+				double p = rand.nextDouble();
+				double prob = Math.exp(-(rr-r)/T(i));
+				if (p < prob) {
+					r = rr;
+					s = ss;
+				}
+			}
+			if (r < rBest) {
+				rBest = r;
+				sBest = s;
+			}
+		}
+		return rBest;
 	}
 		
 
