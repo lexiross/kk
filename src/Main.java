@@ -13,9 +13,9 @@ public class Main {
 		return val;
 	}
 
-	public static void runAll(int[] A, int max) {
+	public static void runAll(long[] A, int max) {
 		long start = System.nanoTime();
-		int kkResidue = LocalSearch.kk(A);
+		long kkResidue = LocalSearch.kk(A);
 		long elapsed = System.nanoTime() - start;
 		double seconds = (double)elapsed / 1000000000.0;
 		System.out.println("KK: " + kkResidue + "\tTime: " + seconds);
