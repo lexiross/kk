@@ -39,12 +39,14 @@ public class StandardSolution implements Solution {
 				}
 			}
 		} else {
-			neighbor = this.S;
+			for (int k = 0; k < n; k++) {
+				neighbor[k] = this.S[k];
+			}
 			int i = rand.nextInt(n);
 			int j;
 			do {
 				j = rand.nextInt(n);
-			} while (i != j);
+			} while (i == j);
 			neighbor[i] *= -1;
 			double p = rand.nextDouble();
 			if (p < 0.5) {
@@ -59,7 +61,7 @@ public class StandardSolution implements Solution {
 		for (int i = 0; i < this.n; i++) {
 			residue += (this.S[i]*A[i]);
 		}
-		return residue;
+		return Math.abs(residue);
 	}
 
 	public void print() {
