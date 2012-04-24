@@ -77,6 +77,8 @@ public class Main {
 		s1.print();
 		s2.print();
 		*/
+		
+		//long max = Math.pow(10, 12);
 				
 		long[] p1 = generateProblem(50, 1000);
 		System.out.print("Problem:\n[");
