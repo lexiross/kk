@@ -1,3 +1,7 @@
+import java.io.BufferedReader;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
 import java.util.Random;
 
 
@@ -20,6 +24,29 @@ public class Main {
 			problem[i] = nextLong(rand, max) + 1;
 		}
 		return problem;
+	}
+	
+	private static long[] generateFromFile(String filename) {
+		int numLines = 100;
+		long[] A = new long[numLines];
+		try {
+			FileReader input = new FileReader(filename);
+			BufferedReader reader = new BufferedReader(input);
+			for (int i = 0; i < numLines; i++) {
+				String line = reader.readLine();
+				A[i] = Long.parseLong(line);
+			}
+						
+			reader.close();
+			
+		} catch (FileNotFoundException e) {
+			System.out.println("File not found! Make the path is either absolute or relative to the bin directory.");
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+
+		return A;
 	}
 
 	private static void runAll(long[] A, int max) {
@@ -66,64 +93,38 @@ public class Main {
 		System.out.println("Simulated Annealing: " + saResidue + "\tTime: " + seconds);
 	}
 	
-	/**
-	 * @param args
-	 */
-	public static void main(String[] args) {
-		// testing solution generation
-		/*
-		Solution s1 = new StandardSolution(10);
-		Solution s2 = new PrepartitionSolution(10);
-		s1.print();
-		s2.print();
-		*/
-		
-		//long max = Math.pow(10, 12);
-				
-		long[] p1 = generateProblem(50, 1000);
+	private static void test() {
+		long[] p1 = generateProblem(100, 1000000000000L);
 		System.out.print("Problem:\n[");
 		for (int i = 0; i < 50; i++) {
 			System.out.print(" " + p1[i] + " ");
 		}
 		System.out.print("]\n");
 		
-		runAll(p1, 500);
+		runAll(p1, 25000);
+	}
+	
+	/**
+	 * @param args
+	 */
+	public static void main(String[] args) {
 		
-		// test local search functions
 		/*
-		int max = 100;
-		long result1 = LocalSearch.repeatedRandom(p1, s1, max);
-		long result2 = LocalSearch.repeatedRandom(p1, s2, max);
-		long result3 = LocalSearch.hillClimbing(p1, s1, max);
-		long result4 = LocalSearch.hillClimbing(p1, s2, max);
-		long result5 = LocalSearch.simulatedAnnealing(p1, s1, max);
-		long result6 = LocalSearch.simulatedAnnealing(p1, s2, max);
+		 * uncomment before submission
+		String usage = "Usage: ./kk <inputfile>";
+        if (args.length != 1) {
+            System.out.println("Wrong number of arguments.");
+            System.out.println(usage);
+            return;
+        }
+        
+        String filename = args[0];
+        long[] problem = generateFromFile(filename);
+        LocalSearch.kk(problem);
+        */
 		
-		System.out.println("1: " + result1 + "\n2: " + result2 + "\n3: " + result3
-				+ "\n4: " + result4 + "\n5: " + result5 + "\n6: " + result6);
+		test();
 		
-		// test neighbor functions
-		Solution n1 = s1.getNeighbor(false);
-		n1.print();
-		Solution n2 = s2.getNeighbor(false);
-		n2.print();
-		
-		// test residue functions
-		long r1 = s1.residue(p1);
-		long r2 = s2.residue(p1);
-		System.out.println("r1: " + r1 + "\nr2: " + r2);
-		
-		// test heap
-		int[] arr = s2.getArray();
-		MaxHeap h = new MaxHeap();
-		for (int i : arr) {
-			h.insert(i);
-		}
-		while (!h.isEmpty()) {
-			long l = h.deleteMax();
-			System.out.println(l);
-		}
-		*/
 
 	}
 
