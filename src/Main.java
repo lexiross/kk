@@ -109,8 +109,6 @@ public class Main {
 	 */
 	public static void main(String[] args) {
 		
-		/*
-		 * uncomment before submission
 		String usage = "Usage: ./kk <inputfile>";
         if (args.length != 1) {
             System.out.println("Wrong number of arguments.");
@@ -120,10 +118,10 @@ public class Main {
         
         String filename = args[0];
         long[] problem = generateFromFile(filename);
-        LocalSearch.kk(problem);
-        */
+        long residue = LocalSearch.kk(problem);
+        System.out.println(residue);
 		
-		test();
+		//test();
 		
 
 	}

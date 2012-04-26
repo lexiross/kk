@@ -49,7 +49,6 @@ public class LocalSearch {
 	
 	public static long simulatedAnnealing(long[] A, Solution s, int max) {
 		long r = s.residue(A);
-		Solution sBest = s;
 		long rBest = r;
 		for (int i = 0; i < max; i++) {
 			Solution ss = s.getNeighbor(false);
@@ -68,7 +67,6 @@ public class LocalSearch {
 			}
 			if (r < rBest) {
 				rBest = r;
-				sBest = s;
 			}
 		}
 		return rBest;
